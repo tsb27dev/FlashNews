@@ -1,10 +1,8 @@
 package ipca.example.flashnews.ui.components
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Build
-import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
+import ipca.example.flashnews.ui.theme.CustomIcons
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -29,64 +27,48 @@ fun MyBottomBar(
             selected = index == 0,
             onClick = {
                 index = 0
-                navController.navigate("techcrunch")
+                navController.navigate("futebol")
             },
             icon = {
                 Icon(
-                    imageVector = Icons.Filled.Home,
-                    contentDescription = "TechCrunch"
+                    imageVector = CustomIcons.Sports_football,
+                    contentDescription = "Futebol"
                 )
             },
             label = {
-                Text("TechCrunch")
+                Text("Futebol")
             }
         )
         NavigationBarItem(
             selected = index == 1,
             onClick = {
                 index = 1
-                navController.navigate("bloomberg")
+                navController.navigate("basquetebol")
             },
             icon = {
                 Icon(
-                    imageVector = Icons.Filled.Face,
-                    contentDescription = "BloomBerg"
+                    imageVector = CustomIcons.SportsBasketball,
+                    contentDescription = "Basquetebol"
                 )
             },
             label = {
-                Text("BloomBerg")
+                Text("Basquetebol")
             }
         )
         NavigationBarItem(
             selected = index == 2,
             onClick = {
                 index = 2
-                navController.navigate("espn")
-            },
-            icon = {
-                Icon(
-                    imageVector = Icons.Filled.Build,
-                    contentDescription = "ESPN"
-                )
-            },
-            label = {
-                Text("ESPN")
-            }
-        )
-        NavigationBarItem(
-            selected = index == 2,
-            onClick = {
-                index = 2
-                navController.navigate("favorites")
+                navController.navigate("favoritos")
             },
             icon = {
                 Icon(
                     imageVector = Icons.Filled.Favorite,
-                    contentDescription = "Favorites"
+                    contentDescription = "Favoritos"
                 )
             },
             label = {
-                Text("Favorites")
+                Text("Favoritos")
             }
         )
     }

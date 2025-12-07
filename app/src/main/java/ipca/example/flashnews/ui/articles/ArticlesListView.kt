@@ -28,6 +28,7 @@ fun ArticlesListView(
     modifier: Modifier = Modifier,
     navController: NavController,
     source : String,
+    query : String,
     onItemClick: (Article) -> Unit = {}
 ) {
 
@@ -42,7 +43,7 @@ fun ArticlesListView(
     )
 
     LaunchedEffect(Unit) {
-        viewModel.loadArticles(source)
+        viewModel.loadArticles(source, query)
     }
 }
 
@@ -88,15 +89,14 @@ fun String.encodeURL() : String {
     return URLEncoder.encode(this, "UTF-8")
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = false)
 @Composable
 fun ArticlesListViewPreview() {
     FlashNewsTheme {
         ArticlesListViewContent(
             navController = rememberNavController(),
             uiState = ArticlesListState(
-                isLoading = true,
-                error = "No internet connection!",
+                isLoading = false,
                 articles = listOf(
                     Article(
                         title = "Title 1",

@@ -22,12 +22,12 @@ class ArticlesListViewModel : ViewModel() {
     var uiState = mutableStateOf(ArticlesListState())
         private set
 
-    fun loadArticles(source : String) {
+    fun loadArticles(source : String, query: String) {
         uiState.value = uiState.value.copy(isLoading = true)
         val client = OkHttpClient()
 
         val request = Request.Builder()
-            .url("https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=1765f87e4ebc40229e80fd0f75b6416c")
+            .url("https://newsapi.org/v2/everything?sources=${source}&q=${query}&apiKey=3744b32c38574ae9b5859f11e650a449")
             .build()
 
         client.newCall(request).enqueue(object : Callback {

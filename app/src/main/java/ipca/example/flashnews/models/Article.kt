@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Entity
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import org.json.JSONObject
@@ -34,15 +35,17 @@ data class Article (
 
 @Dao
 interface ArticleDao {
+
     @Query("SELECT * FROM article")
     fun getAll(): List<Article>
 
-    @Query("SELECT * FROM article WHERE url=:url")
-    fun loadByUrl(url: String): List<Article>
-
-    @Insert
-    fun insert(article: Article)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(vararg article: Article)
 
     @Delete
     fun delete(article: Article)
+
+    // Adicione esta função
+    @Query("SELECT COUNT(*) FROM article WHERE url = :url")
+    fun countByUrl(url: String): Int
 }
